@@ -18,6 +18,7 @@ def main(request, page=1):
     # Запит до бази даних, щоб підрахувати кількість цитат для кожного тега
     top_tags = Tag.objects.annotate(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
 
+
     return render(request, 'quotes/index.html',
                   context={'quotes': quotes_on_page, 'paginator': paginator, 'top_tags': top_tags})
 
